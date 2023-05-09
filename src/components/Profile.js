@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Wrapper from "../styles/ProfileStyle";
@@ -16,12 +16,6 @@ function Profile() {
     email: user ? user.data.email : "",
     location: user ? user.data.location : "",
   });
-
-  // useEffect(() => {
-  //   if (user.isError) {
-  //     dispatch(showAlert({ alertType: "error", alertMsg: user.errorMsg }));
-  //   }
-  // }, [user, dispatch]);
 
   function submitFormHandler(e) {
     e.preventDefault();
