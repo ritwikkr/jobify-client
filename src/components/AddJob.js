@@ -1,26 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 import Wrapper from "../styles/ProfileStyle";
 import Wrapper2 from "../styles/AddJobStyle";
 import Alert from "./Alert";
-import { createJob } from "../context/slices/jobSlice";
+import {
+  createJob,
+  clearJobCreated,
+  fetchJob,
+  toggleIsLoading,
+} from "../context/slices/jobSlice";
 import { showAlert } from "../context/slices/alertSlice";
 
 function AddJob() {
-  // State
-  const [jobDetails, setJobDetails] = useState({
-    position: "",
-    company: "",
-    location: "",
-    status: "pending",
-    type: "full-time",
-  });
-
   // Global State (Redux)
   const dispatch = useDispatch();
-  const { jobCreated } = useSelector((state) => state.job);
+  const { jobCreated, singleJob, isLoading } = useSelector(
+    (state) => state.job
+  );
   const { user } = useSelector((state) => state.user);
+
+  // State
+  const [jobDetails, setJobDetails] = useState({
+    position: singleJob ? singleJob.position : "",
+    company: singleJob ? singleJob.company : "",
+    location: singleJob ? singleJob.location : "",
+    status: singleJob ? singleJob.status : "pending",
+    type: singleJob ? singleJob.type : "full-time",
+  });
 
   // Side Effect -> Success Handler
   useEffect(() => {
@@ -28,8 +36,19 @@ function AddJob() {
       dispatch(
         showAlert({ alertType: "success", alertMsg: "Job Successfully Added" })
       );
+      dispatch(clearJobCreated());
     }
   }, [dispatch, jobCreated]);
+
+  // Side Effect -> Get Job Details via id
+  const { id } = useParams();
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchJob(id));
+    } else {
+      dispatch(toggleIsLoading());
+    }
+  }, [dispatch, id]);
 
   // Submit Handler
   function submitFormHandler(e) {
@@ -41,11 +60,12 @@ function AddJob() {
       );
     }
     dispatch(createJob({ jobDetails, id: user.data._id }));
-    clearFormHandler();
+    clearFormHandler(e);
   }
 
   // Clear Form Handler
-  function clearFormHandler() {
+  function clearFormHandler(e) {
+    e.preventDefault();
     setJobDetails({
       position: "",
       company: "",
@@ -53,6 +73,10 @@ function AddJob() {
       status: "pending",
       type: "full-time",
     });
+  }
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
   }
 
   return (
@@ -63,7 +87,7 @@ function AddJob() {
           <p>Add Job</p>
         </div>
         <div className="content">
-          <form onSubmit={submitFormHandler}>
+          <form>
             <div className="top">
               <div className="form-content">
                 <label htmlFor="position">Position</label>
@@ -106,14 +130,15 @@ function AddJob() {
                   <select
                     name="status"
                     id="status"
+                    // value={jobDetails.status}
                     defaultValue={"pending"}
                     onChange={(e) =>
                       setJobDetails({ ...jobDetails, status: e.target.value })
                     }
                   >
                     <option value="pending">Pending</option>
-                    <option value="fulfilled">Fulfilled</option>
-                    <option value="pending">Pending</option>
+                    <option value="declined">Declined</option>
+                    <option value="interview">Interview</option>
                   </select>
                 </div>
                 <div className="form-content">
@@ -121,6 +146,7 @@ function AddJob() {
                   <select
                     name="type"
                     id="type"
+                    // value={jobDetails.type}
                     defaultValue={"full-time"}
                     onChange={(e) =>
                       setJobDetails({ ...jobDetails, type: e.target.value })
@@ -132,7 +158,9 @@ function AddJob() {
                   </select>
                 </div>
                 <div className="form-content btn">
-                  <button type="submit">Submit</button>
+                  <button type="submit" onClick={submitFormHandler}>
+                    Submit
+                  </button>
                   <button onClick={clearFormHandler}>Clear</button>
                 </div>
               </Wrapper2>

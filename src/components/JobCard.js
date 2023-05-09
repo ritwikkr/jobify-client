@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import Wrapper from "../styles/JobCardStyle";
 import { deleteJobs } from "../context/slices/jobSlice";
@@ -39,7 +40,9 @@ function JobCard({ position, company, location, status, type, _id }) {
           </div>
         </div>
         <div className="buttons">
-          <button>Edit</button>
+          <Link to={`/dashboard/add-job/${_id}`}>
+            <button>Edit</button>
+          </Link>
           <button onClick={() => dispatch(deleteJobs(_id))}>Delete</button>
         </div>
       </div>

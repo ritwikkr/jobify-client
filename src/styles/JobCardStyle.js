@@ -68,7 +68,7 @@ const Wrapper = styled.div`
       }
     }
     > .buttons {
-      > button {
+      button {
         cursor: pointer;
         width: 80px;
         height: 30px;

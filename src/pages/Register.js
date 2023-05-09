@@ -59,86 +59,90 @@ function Register() {
 
   return (
     <Wrapper>
-      <div className="heading">
-        <div className="logo">
-          <img src={logo} alt="logo" />
+      <div className="content">
+        <div className="heading">
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          </div>
+          <div className="login">
+            {showRegister ? <p>Register</p> : <p>Login</p>}
+          </div>
         </div>
-        <div className="login">
-          {showRegister ? <p>Register</p> : <p>Login</p>}
-        </div>
-      </div>
-      {show && <Alert />}
-      <form onSubmit={formSubmitHandler}>
-        {showRegister && (
+        {show && <Alert />}
+        <form onSubmit={formSubmitHandler}>
+          {showRegister && (
+            <div className="form-content">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                onChange={(e) =>
+                  setUserDetails({ ...userDetails, name: e.target.value })
+                }
+              />
+            </div>
+          )}
           <div className="form-content">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="email">Email</label>
             <input
-              type="text"
-              name="name"
-              id="name"
+              type="email"
+              name="email"
+              id="email"
               onChange={(e) =>
-                setUserDetails({ ...userDetails, name: e.target.value })
+                setUserDetails({ ...userDetails, email: e.target.value })
               }
             />
           </div>
-        )}
-        <div className="form-content">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, email: e.target.value })
-            }
-          />
-        </div>
-        <div className="form-content">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, password: e.target.value })
-            }
-          />
-        </div>
-        {showRegister && (
           <div className="form-content">
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              name="confirmPassword"
-              id="confirmPassword"
+              name="password"
+              id="password"
               onChange={(e) =>
-                setUserDetails({
-                  ...userDetails,
-                  confirmPassword: e.target.value,
-                })
+                setUserDetails({ ...userDetails, password: e.target.value })
               }
             />
           </div>
-        )}
-        <div className="form-content">
-          <button type="submit">Submit</button>
-        </div>
-        <div className="form-content">
-          {showRegister ? (
-            <p>
-              Already a member?
-              <span onClick={() => setShowRegister(!showRegister)}>Login</span>
-            </p>
-          ) : (
-            <p>
-              Not a member yet?
-              <span onClick={() => setShowRegister(!showRegister)}>
-                Register
-              </span>
-            </p>
+          {showRegister && (
+            <div className="form-content">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                onChange={(e) =>
+                  setUserDetails({
+                    ...userDetails,
+                    confirmPassword: e.target.value,
+                  })
+                }
+              />
+            </div>
           )}
-        </div>
-      </form>
+          <div className="form-content">
+            <button type="submit">Submit</button>
+          </div>
+          <div className="form-content">
+            {showRegister ? (
+              <p>
+                Already a member?
+                <span onClick={() => setShowRegister(!showRegister)}>
+                  Login
+                </span>
+              </p>
+            ) : (
+              <p>
+                Not a member yet?
+                <span onClick={() => setShowRegister(!showRegister)}>
+                  Register
+                </span>
+              </p>
+            )}
+          </div>
+        </form>
+      </div>
     </Wrapper>
   );
 }

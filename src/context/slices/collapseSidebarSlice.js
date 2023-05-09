@@ -9,8 +9,11 @@ const collapseSidebar = createSlice({
     showSidebar: (state) => {
       state.displaySidebar = !state.displaySidebar;
     },
+    hideSidebar: (state) => {
+      state.displaySidebar = false;
+    },
   },
 });
 
-export const { showSidebar } = collapseSidebar.actions;
+export const { showSidebar, hideSidebar } = collapseSidebar.actions;
 export default collapseSidebar.reducer;

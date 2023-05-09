@@ -23,13 +23,15 @@ const Wrapper = styled.div`
           flex-wrap: wrap;
           justify-content: space-between;
           > .form-content {
+            width: 33%;
             display: flex;
+            margin: 10px 0;
             flex-direction: column;
             > label {
               margin-bottom: 5px;
             }
             > input {
-              width: 380px;
+              width: 100%;
               height: 30px;
               border-radius: 5px;
               background-color: rgb(235, 241, 245);
@@ -43,16 +45,50 @@ const Wrapper = styled.div`
           align-items: flex-end;
           margin-top: 30px;
           > .form-content {
+            width: 33%;
             > button {
-              width: 380px;
+              width: 100%;
               height: 30px;
               border-radius: 5px;
-              margin-left: 9%;
               border: none;
+              margin-left: 10px;
               background-color: rgb(44, 177, 188);
               color: white;
               cursor: pointer;
               box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 1120px) {
+    > .body {
+      > .content {
+        > form {
+          > .top,
+          > .bottom {
+            .form-content {
+              width: 49%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    > .body {
+      > .content {
+        > form {
+          > .top,
+          > .bottom {
+            .form-content {
+              width: 100%;
+              button {
+                margin: 0;
+              }
             }
           }
         }

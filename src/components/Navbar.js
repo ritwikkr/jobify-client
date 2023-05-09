@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Wrapper from "../styles/NavbarStyle";
-import { showSidebar } from "../context/slices/collapseSidebarSlice";
+import {
+  showSidebar,
+  hideSidebar,
+} from "../context/slices/collapseSidebarSlice";
 import { logoutUser } from "../context/slices/userSlice";
+import logo from "../assets/logo.svg";
 
 function Navbar() {
   // Component State
@@ -18,6 +22,17 @@ function Navbar() {
     navigate("/");
   }
 
+  // Side Effect -> Resize window
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 1000) {
+        dispatch(hideSidebar());
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [dispatch]);
+
   return (
     <Wrapper>
       <div className="menu" onClick={() => dispatch(showSidebar())}>
@@ -25,6 +40,9 @@ function Navbar() {
       </div>
       <div className="title">
         <h1>Dashboard</h1>
+        <div className="hide">
+          <img src={logo} alt="logo" />
+        </div>
       </div>
       <div className="profile" onClick={() => setShowDropdown(!showDropdown)}>
         <i className="fa-solid fa-user"></i>

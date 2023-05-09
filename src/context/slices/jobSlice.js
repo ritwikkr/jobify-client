@@ -18,6 +18,7 @@ export const createJob = createAsyncThunk(
 export const fetchJobs = createAsyncThunk("fetchJobs", async (userId) => {
   try {
     const { data } = await axios.get(`/api/v1/jobs/${userId}`);
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -27,7 +28,19 @@ export const fetchJobs = createAsyncThunk("fetchJobs", async (userId) => {
 export const deleteJobs = createAsyncThunk("deleteJobs", async (jobId) => {
   try {
     const { data } = await axios.delete(`/api/v1/jobs/${jobId}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+export const fetchJob = createAsyncThunk("fetchJob", async (id) => {
+  try {
+    console.log(`Start`);
+    console.log(id);
+    const { data } = await axios.get(`/api/v1/jobs/job/${id}`);
     console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -41,8 +54,16 @@ const jobSlice = createSlice({
     jobCreated: false,
     isError: false,
     errorMsg: null,
+    singleJob: null,
   },
-  reducers: {},
+  reducers: {
+    clearJobCreated: (state, action) => {
+      state.jobCreated = false;
+    },
+    toggleIsLoading: (state, action) => {
+      state.isLoading = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(createJob.pending, (state, action) => {
       state.isLoading = true;
@@ -57,6 +78,7 @@ const jobSlice = createSlice({
       state.errorMsg = action.payload;
     });
 
+    // Fetch Jobs
     builder.addCase(fetchJobs.pending, (state, action) => {
       state.isLoading = true;
     });
@@ -66,9 +88,24 @@ const jobSlice = createSlice({
     });
     builder.addCase(fetchJobs.rejected, (state, action) => {
       state.isError = true;
-      console.log(action.payload);
     });
+    builder.addCase(deleteJobs.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteJobs.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.job = state.job.filter((item) => item._id !== action.payload._id);
+    });
+    builder.addCase(fetchJob.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchJob.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.singleJob = action.payload;
+    });
+    builder.addCase(fetchJob.rejected, (state, action) => {});
   },
 });
 
+export const { clearJobCreated, toggleIsLoading } = jobSlice.actions;
 export default jobSlice.reducer;

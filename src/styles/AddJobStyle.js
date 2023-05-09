@@ -2,13 +2,15 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   width: 100%;
   > .form-content {
     display: flex;
     flex-direction: column;
-    width: 380px;
+    margin: 10px 0;
+    width: 33%;
     > label {
       margin-bottom: 10px;
     }
@@ -34,6 +36,18 @@ const Wrapper = styled.div`
       &:nth-child(2) {
         background-color: rgb(86, 113, 141);
       }
+    }
+  }
+
+  @media only screen and (max-width: 1120px) {
+    > .form-content {
+      width: 33%;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    > .form-content {
+      width: 100% !important  ;
     }
   }
 `;

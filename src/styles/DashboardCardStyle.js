@@ -1,17 +1,16 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 250px;
-  /* width: 430px; */
-  width: 31%;
+  height: 200px;
+  width: 33%;
   background-color: white;
   border-radius: 5px;
   padding: 20px;
   position: relative;
+  margin-bottom: 20px;
   .top {
-    /* border: 2px solid blue; */
-    margin: 50px auto;
-    width: 350px;
+    margin: 40px auto;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,10 +29,8 @@ const Wrapper = styled.div`
     }
   }
   > .bottom {
-    width: 350px;
+    width: 90%;
     margin: auto;
-    /* border: 2px solid red; */
-    /* padding-left: 50px; */
     font-size: 20px;
   }
   .line {
@@ -43,6 +40,14 @@ const Wrapper = styled.div`
     width: 100%;
     height: 7px;
     border-radius: 0 0 5px 5px;
+  }
+  @media only screen and (max-width: 1110px) {
+    width: 49%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    border: 2px solid blue;
+    width: 100%;
   }
 `;
 

@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: 100px;
-  /* width: 100%; */
-  /* width: 100vw; */
+  /* border: 2px solid red; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,9 +11,18 @@ const Wrapper = styled.div`
   transition: all 0.2s ease-in-out;
   .menu {
     i {
-      font-size: 36px;
+      font-size: 30px;
       cursor: pointer;
       color: rgb(44, 177, 188);
+    }
+  }
+  .title {
+    font-size: 15px;
+    h1 {
+      font-weight: lighter;
+    }
+    > .hide {
+      display: none;
     }
   }
   .profile {
@@ -22,7 +30,7 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 150px;
-    height: 40px;
+    height: 30px;
     padding: 5px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -30,7 +38,7 @@ const Wrapper = styled.div`
     color: white;
     position: relative;
     .dropdown {
-      /* border: 2px solid red; */
+      z-index: 1;
       padding: 5px 20px;
       width: 150px;
       box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
@@ -49,6 +57,21 @@ const Wrapper = styled.div`
     }
     .show {
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    /* border: 2px solid blue; */
+    > .title {
+      h1 {
+        display: none;
+      }
+      > .hide {
+        display: block;
+        img {
+          width: 100px;
+        }
+      }
     }
   }
 `;

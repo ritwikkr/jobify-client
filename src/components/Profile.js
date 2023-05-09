@@ -11,7 +11,7 @@ function Profile() {
   const dispatch = useDispatch();
   // Component State
   const [userDetails, setUserDetails] = useState({
-    name: user ? user.data.name : "",
+    firstName: user ? user.data.firstName : "",
     lastName: user ? user.data.lastName : "",
     email: user ? user.data.email : "",
     location: user ? user.data.location : "",
@@ -45,9 +45,12 @@ function Profile() {
                 <input
                   type="text"
                   id="name"
-                  value={userDetails.name}
+                  value={userDetails.firstName}
                   onChange={(e) =>
-                    setUserDetails({ ...userDetails, name: e.target.value })
+                    setUserDetails({
+                      ...userDetails,
+                      firstName: e.target.value,
+                    })
                   }
                 />
               </div>
