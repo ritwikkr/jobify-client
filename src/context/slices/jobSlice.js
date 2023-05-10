@@ -20,6 +20,7 @@ export const createJob = createAsyncThunk(
 
 export const fetchJobs = createAsyncThunk("fetchJobs", async (userId) => {
   try {
+    console.log(`${BASE_URL}api/v1/jobs`);
     const { data } = await axios.get(`${BASE_URL}/api/v1/jobs/${userId}`);
     console.log(data);
     return data;
