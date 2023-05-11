@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/register" element={<Register />} />
-        <Route
+        {/* <Route
           path="/dashboard"
           element={
             <ProtectedRoutes>
@@ -28,7 +28,7 @@ function App() {
           <Route path="add-job/:id" element={<AddJob />} />
           <Route path="add-job" element={<AddJob />} />
           <Route path="profile" element={<Profile />} />
-        </Route>
+        </Route> */}
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
