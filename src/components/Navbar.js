@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Wrapper from "../styles/NavbarStyle";
@@ -16,6 +16,7 @@ function Navbar() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.user);
 
   function logoutHandler() {
     dispatch(logoutUser());
@@ -46,7 +47,7 @@ function Navbar() {
       </div>
       <div className="profile" onClick={() => setShowDropdown(!showDropdown)}>
         <i className="fa-solid fa-user"></i>
-        <p>John</p>
+        <p>{user.data.firstName.slice(0, 6) + "..."}</p>
         <i className="fa-solid fa-caret-down"></i>
         <div
           className={`dropdown ${!showDropdown && `show`}`}
