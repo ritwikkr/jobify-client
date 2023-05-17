@@ -7,7 +7,9 @@ export const registerUser = createAsyncThunk(
   "registerUser",
   async (userData, { rejectWithValue }) => {
     try {
+      console.log("Inside register user slice");
       const { data } = await axios.post(`${BASE_URL}/user/register`, userData);
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
