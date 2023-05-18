@@ -28,6 +28,7 @@ function Register() {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
+      console.log("Inside success handler");
       dispatch(
         showAlert({
           alertType: "success",
@@ -50,6 +51,7 @@ function Register() {
   // Submit Handler
   function formSubmitHandler(e) {
     e.preventDefault();
+      console.log("Inside form submit handler");
     if (showRegister) {
       dispatch(registerUser(userDetails));
     } else {
