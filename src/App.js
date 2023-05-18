@@ -29,7 +29,6 @@ function App() {
           <Route path="add-job" element={<AddJob />} />
           <Route path="profile" element={<Profile />} />
         </Route>
-        </Route>}
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
