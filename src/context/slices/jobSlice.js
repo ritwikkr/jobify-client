@@ -17,9 +17,7 @@ export const createJob = createAsyncThunk(
 
 export const fetchJobs = createAsyncThunk("fetchJobs", async (userId) => {
   try {
-    console.log(`${BASE_URL}api/v1/jobs`);
     const { data } = await axios.get(`${BASE_URL}/jobs/${userId}`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
@@ -38,9 +36,7 @@ export const deleteJobs = createAsyncThunk("deleteJobs", async (jobId) => {
 export const fetchJob = createAsyncThunk("fetchJob", async (id) => {
   try {
     console.log(`Start`);
-    console.log(id);
     const { data } = await axios.get(`${BASE_URL}/jobs/job/${id}`);
-    console.log(data);
     return data;
   } catch (error) {
     console.log(error);
