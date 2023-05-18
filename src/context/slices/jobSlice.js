@@ -7,10 +7,7 @@ export const createJob = createAsyncThunk(
   "createJob",
   async (jobDetails, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        `${BASE_URL}/api/v1/jobs/create`,
-        jobDetails
-      );
+      const { data } = await axios.post(`${BASE_URL}/jobs/create`, jobDetails);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -20,9 +17,7 @@ export const createJob = createAsyncThunk(
 
 export const fetchJobs = createAsyncThunk("fetchJobs", async (userId) => {
   try {
-    console.log(`${BASE_URL}api/v1/jobs`);
-    const { data } = await axios.get(`${BASE_URL}/api/v1/jobs/${userId}`);
-    console.log(data);
+    const { data } = await axios.get(`${BASE_URL}/jobs/${userId}`);
     return data;
   } catch (error) {
     console.log(error);
@@ -40,10 +35,7 @@ export const deleteJobs = createAsyncThunk("deleteJobs", async (jobId) => {
 
 export const fetchJob = createAsyncThunk("fetchJob", async (id) => {
   try {
-    console.log(`Start`);
-    console.log(id);
-    const { data } = await axios.get(`${BASE_URL}/api/v1/jobs/job/${id}`);
-    console.log(data);
+    const { data } = await axios.get(`${BASE_URL}/jobs/job/${id}`);
     return data;
   } catch (error) {
     console.log(error);
