@@ -51,7 +51,6 @@ function Register() {
   // Submit Handler
   function formSubmitHandler(e) {
     e.preventDefault();
-      console.log("Inside form submit handler");
     if (showRegister) {
       dispatch(registerUser(userDetails));
     } else {
