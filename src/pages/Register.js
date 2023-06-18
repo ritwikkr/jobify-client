@@ -28,7 +28,6 @@ function Register() {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      console.log("Inside success handler");
       dispatch(
         showAlert({
           alertType: "success",
