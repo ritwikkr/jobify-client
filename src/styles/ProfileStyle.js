@@ -21,11 +21,10 @@ const Wrapper = styled.div`
         > .bottom {
           display: flex;
           flex-wrap: wrap;
-          justify-content: space-between;
           > .form-content {
-            width: 33%;
+            width: 32%;
             display: flex;
-            margin: 10px 0;
+            margin: 10px 10px 10px 0;
             flex-direction: column;
             > label {
               margin-bottom: 5px;
@@ -45,13 +44,13 @@ const Wrapper = styled.div`
           align-items: flex-end;
           margin-top: 30px;
           > .form-content {
-            width: 33%;
+            width: 32%;
+            /* border: 2px solid red; */
             > button {
               width: 100%;
               height: 30px;
               border-radius: 5px;
               border: none;
-              margin-left: 10px;
               background-color: rgb(44, 177, 188);
               color: white;
               cursor: pointer;

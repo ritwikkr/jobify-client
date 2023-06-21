@@ -47,7 +47,7 @@ function Navbar() {
       </div>
       <div className="profile" onClick={() => setShowDropdown(!showDropdown)}>
         <i className="fa-solid fa-user"></i>
-        <p>{user.data.firstName.slice(0, 6) + "..."}</p>
+        <p>{user.data.name.slice(0, 6) + "..."}</p>
         <i className="fa-solid fa-caret-down"></i>
         <div
           className={`dropdown ${!showDropdown && `show`}`}

@@ -51,6 +51,7 @@ const jobSlice = createSlice({
     isError: false,
     errorMsg: null,
     singleJob: null,
+    jobId: null,
   },
   reducers: {
     clearJobCreated: (state, action) => {
@@ -58,6 +59,9 @@ const jobSlice = createSlice({
     },
     toggleIsLoading: (state, action) => {
       state.isLoading = false;
+    },
+    editJobId: (state, action) => {
+      state.jobId = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -103,5 +107,5 @@ const jobSlice = createSlice({
   },
 });
 
-export const { clearJobCreated, toggleIsLoading } = jobSlice.actions;
+export const { clearJobCreated, toggleIsLoading, editJobId } = jobSlice.actions;
 export default jobSlice.reducer;

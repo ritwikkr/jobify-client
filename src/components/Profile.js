@@ -11,10 +11,8 @@ function Profile() {
   const dispatch = useDispatch();
   // Component State
   const [userDetails, setUserDetails] = useState({
-    firstName: user ? user.data.firstName : "",
-    lastName: user ? user.data.lastName : "",
+    name: user ? user.data.name : "",
     email: user ? user.data.email : "",
-    location: user ? user.data.location : "",
   });
 
   function submitFormHandler(e) {
@@ -39,23 +37,12 @@ function Profile() {
                 <input
                   type="text"
                   id="name"
-                  value={userDetails.firstName}
+                  value={userDetails.name}
                   onChange={(e) =>
                     setUserDetails({
                       ...userDetails,
-                      firstName: e.target.value,
+                      name: e.target.value,
                     })
-                  }
-                />
-              </div>
-              <div className="form-content">
-                <label htmlFor="l-name">Last Name</label>
-                <input
-                  type="text"
-                  id="l-name"
-                  value={userDetails.lastName}
-                  onChange={(e) =>
-                    setUserDetails({ ...userDetails, lastName: e.target.value })
                   }
                 />
               </div>
@@ -72,17 +59,6 @@ function Profile() {
               </div>
             </div>
             <div className="bottom">
-              <div className="form-content">
-                <label htmlFor="location">Location</label>
-                <input
-                  type="text"
-                  id="location"
-                  value={userDetails.location}
-                  onChange={(e) =>
-                    setUserDetails({ ...userDetails, location: e.target.value })
-                  }
-                />
-              </div>
               <div className="form-content">
                 <button>Save Changes</button>
               </div>

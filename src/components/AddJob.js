@@ -16,10 +16,24 @@ import { showAlert } from "../context/slices/alertSlice";
 function AddJob() {
   // Global State (Redux)
   const dispatch = useDispatch();
-  const { jobCreated, singleJob, isLoading } = useSelector(
+  const { jobCreated, singleJob, isLoading, jobId } = useSelector(
     (state) => state.job
   );
   const { user } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    if (jobId) {
+      dispatch(fetchJob(jobId));
+      setJobDetails({
+        position: singleJob?.position,
+        company: singleJob?.company,
+        location: singleJob?.location,
+        status: singleJob?.status,
+        type: singleJob?.type,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [jobId, dispatch]);
 
   // State
   const [jobDetails, setJobDetails] = useState({
@@ -41,14 +55,14 @@ function AddJob() {
   }, [dispatch, jobCreated]);
 
   // Side Effect -> Get Job Details via id
-  const { id } = useParams();
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchJob(id));
-    } else {
-      dispatch(toggleIsLoading());
-    }
-  }, [dispatch, id]);
+  // const { id } = useParams();
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(fetchJob(id));
+  //   } else {
+  //     dispatch(toggleIsLoading());
+  //   }
+  // }, [dispatch, id]);
 
   // Submit Handler
   function submitFormHandler(e) {
@@ -84,7 +98,7 @@ function AddJob() {
       <div className="body">
         <div className="title">
           <Alert />
-          <p>Add Job</p>
+          {jobId ? <p>Edit Job</p> : <p>Add Job</p>}
         </div>
         <div className="content">
           <form>
