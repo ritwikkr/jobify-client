@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import Wrapper from "../styles/ProfileStyle";
 import Wrapper2 from "../styles/AddJobStyle";
@@ -9,7 +8,6 @@ import {
   createJob,
   clearJobCreated,
   fetchJob,
-  toggleIsLoading,
 } from "../context/slices/jobSlice";
 import { showAlert } from "../context/slices/alertSlice";
 
