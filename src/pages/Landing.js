@@ -18,10 +18,10 @@ function Landing() {
               Job <span>Tracking</span> App
             </h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam
-              repellat dolorem deserunt atque. Deleniti officia nobis laboriosam
-              tenetur, praesentium non veniam est ullam, amet repellendus
-              facilis
+              Welcome to Jobify, the ultimate MERN Stack website for effortless
+              job record management. Create, track, and edit job listings with
+              secure login/register functionality. Streamline your job
+              management process with Jobify.
             </p>
             <Link to={"/register"}>
               <button>Login / Register</button>

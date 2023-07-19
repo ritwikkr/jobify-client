@@ -17,6 +17,7 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+  const [isClicked, setIsClicked] = useState(false);
 
   // Global State (Redux)
   const dispatch = useDispatch();
@@ -45,11 +46,13 @@ function Register() {
     if (isError) {
       dispatch(showAlert({ alertType: "error", alertMsg: errorMsg }));
     }
+    setIsClicked(false);
   }, [isError, dispatch, errorMsg]);
 
   // Submit Handler
   function formSubmitHandler(e) {
     e.preventDefault();
+    setIsClicked(true);
     if (showRegister) {
       dispatch(registerUser(userDetails));
     } else {
@@ -122,7 +125,12 @@ function Register() {
             </div>
           )}
           <div className="form-content">
-            <button type="submit">Submit</button>
+            <button
+              disabled={isClicked}
+              className={isClicked ? "disable-btn" : ""}
+            >
+              Submit
+            </button>
           </div>
           <div className="form-content">
             {showRegister ? (

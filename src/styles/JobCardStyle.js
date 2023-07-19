@@ -56,16 +56,6 @@ const Wrapper = styled.div`
     }
     > .bottom {
       margin: 20px 0;
-      > .status {
-        height: 30px;
-        border-radius: 5px;
-        width: 100px;
-        background-color: rgb(255, 239, 239);
-        color: rgb(215, 117, 148);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
     }
     > .buttons {
       button {

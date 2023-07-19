@@ -48,6 +48,9 @@ const Wrapper = styled.div`
           font-weight: bold;
           margin-top: 10px;
         }
+        > .disable-btn {
+          cursor: not-allowed;
+        }
         > p {
           margin: auto;
           > span {

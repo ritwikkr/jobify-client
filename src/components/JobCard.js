@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import Wrapper from "../styles/JobCardStyle";
 import { deleteJobs, editJobId } from "../context/slices/jobSlice";
+import Status from "./Status";
 
 function JobCard({ position, company, location, status, type, _id }) {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function JobCard({ position, company, location, status, type, _id }) {
             <p>{type}</p>
           </div>
           <div className="status">
-            <p>{status}</p>
+            <Status status={status} />
           </div>
         </div>
         <div className="buttons">
